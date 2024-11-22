@@ -203,12 +203,13 @@ radius = 17.0
 height = 52.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7vqh6"]
-size = Vector2(22, 51)
+size = Vector2(51, 49)
 
-[node name="inimigo" type="CharacterBody2D" groups=["inimigo"]]
+[node name="inimigo" type="CharacterBody2D" node_paths=PackedStringArray("_timerInimigo") groups=["inimigo"]]
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_a2fm8")
+_timerInimigo = NodePath("Timer")
 
 [node name="animInimigo" type="AnimatedSprite2D" parent="."]
 light_mask = 4
@@ -230,16 +231,22 @@ shape = SubResource("CapsuleShape2D_6c5yi")
 speed_scale = 1.5
 
 [node name="colisao" type="RayCast2D" parent="."]
-position = Vector2(-1, -26)
+position = Vector2(-2, -36)
 target_position = Vector2(-35, 0)
 collision_mask = 2
 
 [node name="detectaGuerreiro" type="RayCast2D" parent="."]
-position = Vector2(0, -23)
-target_position = Vector2(-50, 0)
+position = Vector2(1, -39)
+target_position = Vector2(-35, 0)
 
 [node name="hitbox" parent="." instance=ExtResource("4_lr8l0")]
 
-[node name="colisaoDano" type="CollisionShape2D" parent="hitbox"]
-position = Vector2(1, -25.5)
+[node name="colisaoDano" type="CollisionShape2D" parent="hitbox" groups=["inimigo"]]
+position = Vector2(-0.5, -24.5)
 shape = SubResource("RectangleShape2D_7vqh6")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

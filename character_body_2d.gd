@@ -5,9 +5,12 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 var pular := false
 var ataques := false
+var ataqueFinal := true
 var limite_esquerdo = 150
-@onready var animacao := $animPlayer as AnimatedSprite2D
+@onready var anim:= $animPlayer as AnimatedSprite2D
+@onready var danoCausado := $DanoCausado as RayCast2D
 @export var _timer : Timer = null
+@export var _timerDano : Timer = null
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
@@ -22,8 +25,10 @@ func _physics_process(delta: float) -> void:
 		
 		
 	if Input.is_action_just_pressed("ui_down") and ataques == false:
-		animacao.play("ataque")
+		anim.play("ataque")
 		ataques = true
+		ataqueFinal = false
+		_timerDano.start()
 		_timer.start()
 
 	
@@ -32,18 +37,31 @@ func _physics_process(delta: float) -> void:
 		direction = 0
 	if direction:
 		velocity.x = direction * SPEED
-		animacao.scale.x = direction
+		anim.scale.x = direction
+		danoCausado.scale.x = direction
 		if !pular:
-			animacao.play("correr")
+			anim.play("correr")
 	elif  pular: 
-		animacao.play("pular")
+		anim.play("pular")
 	elif !ataques:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-		animacao.play("parado")
+		anim.play("parado")
 
+	if danoCausado.is_colliding():
+		if ataques:
+			var inimigo = danoCausado.get_collider() 
+			if ataqueFinal:
+				if inimigo and inimigo.is_in_group("inimigo"): 
+					inimigo.queue_free()
+			
 	move_and_slide()
 	
 
+
+
 func _on_ataque_tempo_timeout() -> void:
 	ataques = false
-	 # Replace with function body.
+	
+
+func _on_dano_inimigo_timeout() -> void:
+	ataqueFinal = true

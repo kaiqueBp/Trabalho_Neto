@@ -167,11 +167,10 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u1hv3"]
 size = Vector2(35, 61.25)
 
-[node name="character_body_2d" type="CharacterBody2D" node_paths=PackedStringArray("_timer", "_timerDano")]
+[node name="character_body_2d" type="CharacterBody2D" node_paths=PackedStringArray("_timer")]
 collision_mask = 6
 script = ExtResource("1_haprs")
 _timer = NodePath("ataqueTempo")
-_timerDano = NodePath("DanoInimigo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -203,14 +202,9 @@ one_shot = true
 
 [node name="DanoCausado" type="RayCast2D" parent="."]
 position = Vector2(-1, -27)
-target_position = Vector2(55, 0)
+target_position = Vector2(40, 0)
 collision_mask = 4
 
 [node name="hitbox" parent="DanoCausado" instance=ExtResource("4_50l67")]
 
-[node name="DanoInimigo" type="Timer" parent="."]
-wait_time = 0.4
-one_shot = true
-
 [connection signal="timeout" from="ataqueTempo" to="." method="_on_ataque_tempo_timeout"]
-[connection signal="timeout" from="DanoInimigo" to="." method="_on_dano_inimigo_timeout"]

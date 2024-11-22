@@ -22,14 +22,14 @@ func reset_player():
 
 func _on_button_pressed() -> void:
 	if get_tree().current_scene.name == "Cena1":
-		var player = $"../CharacterBody2D"
+		var player = $"../jogador"
 		if player:  # Substitua pelo caminho correto até o nó do jogador
 			player.global_position = start_position  # Reinicia o jogador na posição inicial
 			player.set_physics_process(true)  # Restaura o movimento
 			death_screen.visible = false
 			print("encontrou")
 	if get_tree().current_scene.name == "Cena2":
-		var player = $"../CharacterBody2D"
+		var player = $"../jogador"
 		if player:  # Substitua pelo caminho correto até o nó do jogador
 			player.global_position = start_position2  # Reinicia o jogador na posição inicial
 			player.set_physics_process(true)  # Restaura o movimento
