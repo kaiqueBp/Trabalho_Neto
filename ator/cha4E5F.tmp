@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dx1hvwli7k3ni"]
+[gd_scene load_steps=31 format=3 uid="uid://dx1hvwli7k3ni"]
 
 [ext_resource type="Script" path="res://character_body_2d.gd" id="1_haprs"]
 [ext_resource type="Texture2D" uid="uid://bkkwhm6246vsj" path="res://assets/Tiny Swords/Tiny Swords (Update 010)/Factions/Knights/Troops/Warrior/Blue/Warrior_Blue.png" id="2_2xxl2"]
@@ -30,6 +30,26 @@ region = Rect2(768, 384, 192, 192)
 [sub_resource type="AtlasTexture" id="AtlasTexture_jn2ut"]
 atlas = ExtResource("2_2xxl2")
 region = Rect2(960, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bt7b0"]
+atlas = ExtResource("2_2xxl2")
+region = Rect2(0, 576, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_liknn"]
+atlas = ExtResource("2_2xxl2")
+region = Rect2(192, 576, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ceu7"]
+atlas = ExtResource("2_2xxl2")
+region = Rect2(576, 576, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uoawk"]
+atlas = ExtResource("2_2xxl2")
+region = Rect2(768, 576, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lt158"]
+atlas = ExtResource("2_2xxl2")
+region = Rect2(960, 576, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oayaw"]
 atlas = ExtResource("2_2xxl2")
@@ -103,8 +123,23 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jn2ut")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bt7b0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_liknn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ceu7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uoawk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lt158")
 }],
-"loop": false,
+"loop": true,
 "name": &"ataque",
 "speed": 7.0
 }, {
@@ -127,7 +162,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ljrs1")
 }],
-"loop": false,
+"loop": true,
 "name": &"correr",
 "speed": 8.0
 }, {
@@ -150,7 +185,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_go03b")
 }],
-"loop": false,
+"loop": true,
 "name": &"parado",
 "speed": 10.0
 }, {
@@ -158,7 +193,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ql7mp")
 }],
-"loop": false,
+"loop": true,
 "name": &"pular",
 "speed": 5.0
 }]
@@ -185,6 +220,7 @@ position = Vector2(1.5, -28.5)
 scale = Vector2(0.994792, 1.00521)
 sprite_frames = SubResource("SpriteFrames_rm65a")
 animation = &"ataque"
+frame_progress = 0.846928
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
@@ -193,5 +229,3 @@ position = Vector2(4.5, -29.5)
 
 [node name="DanoRecebido" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("RectangleShape2D_u1hv3")
-
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
