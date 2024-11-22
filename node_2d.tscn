@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://dcwdwqteitskw"]
+[gd_scene load_steps=39 format=3 uid="uid://dcwdwqteitskw"]
 
 [ext_resource type="Texture2D" uid="uid://bva2spjqwspdj" path="res://assets/Tiny Swords/Tiny Swords (Update 010)/Terrain/Ground/Tilemap_Flat.png" id="1_r5mew"]
 [ext_resource type="Texture2D" uid="uid://bd1udyhend01m" path="res://assets/Tiny Swords/Tiny Swords (Update 010)/Terrain/Ground/Tilemap_Elevation.png" id="2_li1oi"]
@@ -14,7 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://yboesj2l7kna" path="res://assets/Seasonal Tilesets/1 - Grassland/Background parts/3 - Cloud_cover_1.png" id="7_io7te"]
 [ext_resource type="Texture2D" uid="uid://dsy4lbrv026gk" path="res://assets/Seasonal Tilesets/5 - Misc. universal tiles/Flowers (16 x 16).png" id="8_j6ljr"]
 [ext_resource type="Texture2D" uid="uid://r7nc0cb10b22" path="res://assets/Seasonal Tilesets/1 - Grassland/Background parts/4 - Cloud_cover_2.png" id="8_r8dau"]
-[ext_resource type="Texture2D" uid="uid://kodluu74wla8" path="res://assets/Tiny Swords/Tiny Swords (Update 010)/Terrain/Ground/Tilemap_FlatCopia.png" id="9_i2d2m"]
 [ext_resource type="Texture2D" uid="uid://88ab7gdgm53j" path="res://assets/Seasonal Tilesets/5 - Misc. universal tiles/House (112 x 96).png" id="9_pi1ic"]
 [ext_resource type="Texture2D" uid="uid://o0k0ntqm7iib" path="res://assets/Seasonal Tilesets/5 - Misc. universal tiles/Lava_frames (16 x 32).png" id="10_05uvo"]
 [ext_resource type="PackedScene" uid="uid://guqf1wl32uep" path="res://portal.tscn" id="10_mvel8"]
@@ -1328,7 +1327,7 @@ sources/11 = SubResource("TileSetAtlasSource_63do5")
 shader = ExtResource("5_mc72m")
 shader_parameter/move_speed = 0.05
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wl7bh"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mucf7"]
 resource_name = "lava"
 texture = ExtResource("10_05uvo")
 0:0/0 = 0
@@ -1347,68 +1346,15 @@ texture = ExtResource("10_05uvo")
 
 [sub_resource type="TileSet" id="TileSet_56y35"]
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_wl7bh")
+sources/0 = SubResource("TileSetAtlasSource_mucf7")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_q0rg0"]
 radius = 66.0681
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vuv0v"]
-texture = ExtResource("6_bbp04")
-texture_region_size = Vector2i(64, 64)
-1:1/0 = 0
-2:1/0 = 0
-3:1/0 = 0
-5:1/0 = 0
-6:1/0 = 0
-7:1/0 = 0
-9:1/0 = 0
-10:1/0 = 0
-11:1/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-3:2/0 = 0
-5:2/0 = 0
-6:2/0 = 0
-7:2/0 = 0
-9:2/0 = 0
-10:2/0 = 0
-11:2/0 = 0
-15:2/0 = 0
-16:2/0 = 0
-17:2/0 = 0
-1:3/0 = 0
-2:3/0 = 0
-3:3/0 = 0
-5:3/0 = 0
-6:3/0 = 0
-7:3/0 = 0
-9:3/0 = 0
-10:3/0 = 0
-11:3/0 = 0
-14:4/0 = 0
-15:4/0 = 0
-16:4/0 = 0
-17:4/0 = 0
-18:4/0 = 0
-1:5/0 = 0
-3:5/0 = 0
-5:5/0 = 0
-6:5/0 = 0
-7:5/0 = 0
-9:5/0 = 0
-10:5/0 = 0
-11:5/0 = 0
-12:5/0 = 0
-14:5/0 = 0
-16:5/0 = 0
-18:5/0 = 0
-1:0/0 = 0
+[sub_resource type="LabelSettings" id="LabelSettings_3s7og"]
+font_size = 30
 
-[sub_resource type="TileSet" id="TileSet_ymxfr"]
-physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_vuv0v")
-
-[node name="Node2D" type="Node2D"]
+[node name="Cena1" type="Node2D"]
 position = Vector2(-4, 18)
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -1420,6 +1366,15 @@ layer_0/tile_data = PackedInt32Array(2949120, 0, 3, 3014656, 0, 4, 3080192, 0, 5
 [node name="CharacterBody2D" parent="." instance=ExtResource("5_ddp6r")]
 position = Vector2(236, 513)
 
+[node name="Camera2D2" type="Camera2D" parent="CharacterBody2D"]
+offset = Vector2(100, -130)
+zoom = Vector2(0.9, 0.9)
+limit_left = 0
+limit_top = -1000
+limit_right = 2000
+limit_bottom = 2000
+limit_smoothed = true
+
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -1428,7 +1383,7 @@ motion_scale = Vector2(0.3, 1)
 motion_mirroring = Vector2(864, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(-1, -164)
+position = Vector2(-21, -164)
 scale = Vector2(4.83333, 3.92308)
 texture = ExtResource("6_n7dik")
 centered = false
@@ -1455,18 +1410,6 @@ motion_mirroring = Vector2(864, 0)
 position = Vector2(-6, 207)
 scale = Vector2(4.82986, 2.61538)
 texture = ExtResource("8_r8dau")
-centered = false
-
-[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(5, 30)
-motion_scale = Vector2(0.9, 1)
-motion_mirroring = Vector2(864, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5"]
-visible = false
-position = Vector2(-2, 511)
-scale = Vector2(4.94886, 4)
-texture = ExtResource("9_i2d2m")
 centered = false
 
 [node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -1506,10 +1449,34 @@ script = ExtResource("21_chpev")
 position = Vector2(1078, 673)
 shape = SubResource("CircleShape2D_q0rg0")
 
-[node name="arvore" type="TileMap" parent="."]
-tile_set = SubResource("TileSet_ymxfr")
-format = 2
-layer_0/tile_data = PackedInt32Array(2228271, 65536, 0)
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 260.0
+offset_right = 740.0
+offset_bottom = 329.0
+text = "Você morreu!"
+label_settings = SubResource("LabelSettings_3s7og")
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 487.0
+offset_top = 318.0
+offset_right = 667.0
+offset_bottom = 370.0
+theme_override_font_sizes/font_size = 30
+text = "Reiniciar"
 
 [connection signal="body_entered" from="lava2" to="CharacterBody2D" method="_on_lava_2_body_entered"]
 [connection signal="body_entered" from="lava2" to="lava2" method="_on_body_entered"]
+[connection signal="pressed" from="CanvasLayer/Control/Button" to="lava2" method="_on_button_pressed"]

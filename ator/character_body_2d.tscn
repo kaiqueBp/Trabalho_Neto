@@ -3,8 +3,9 @@
 [ext_resource type="Script" path="res://character_body_2d.gd" id="1_haprs"]
 [ext_resource type="Texture2D" uid="uid://bkkwhm6246vsj" path="res://assets/Tiny Swords/Tiny Swords (Update 010)/Factions/Knights/Troops/Warrior/Blue/Warrior_Blue.png" id="2_2xxl2"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7dy0i"]
-size = Vector2(78.5, 74.5)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6jmsj"]
+radius = 18.0
+height = 50.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oayaw"]
 atlas = ExtResource("2_2xxl2")
@@ -120,20 +121,11 @@ collision_mask = 2
 script = ExtResource("1_haprs")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-8.25, -39)
-shape = SubResource("RectangleShape2D_7dy0i")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2(100, -130)
-zoom = Vector2(0.9, 0.9)
-limit_left = 0
-limit_top = -1000
-limit_right = 2000
-limit_bottom = 2000
-limit_smoothed = true
+position = Vector2(0, -1)
+shape = SubResource("CapsuleShape2D_6jmsj")
 
 [node name="animPlayer" type="AnimatedSprite2D" parent="."]
-position = Vector2(-15, -37)
+position = Vector2(-3.05176e-05, -1.00001)
 scale = Vector2(1.00521, 1.00521)
 sprite_frames = SubResource("SpriteFrames_rm65a")
 animation = &"parado"
