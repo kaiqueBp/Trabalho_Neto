@@ -25,7 +25,7 @@ func _on_body_entered(body: Node2D) -> void:
 
 func _on_button_pressed() -> void:
 	if get_tree().current_scene.name == "Cena3":
-		var player = $"../CharacterBody2D"
+		var player = $"../jogador"
 		get_tree().change_scene_to_file("res://node_2d.tscn")
 		player.set_physics_process(true)  # Restaura o movimento
 		reinit_screen.visible = false

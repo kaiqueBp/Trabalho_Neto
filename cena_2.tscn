@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://lftfoi7wnf61"]
+[gd_scene load_steps=21 format=3 uid="uid://lftfoi7wnf61"]
 
 [ext_resource type="Texture2D" uid="uid://bva2spjqwspdj" path="res://assets/Tiny Swords/Tiny Swords (Update 010)/Terrain/Ground/Tilemap_Flat.png" id="1_vh3oc"]
 [ext_resource type="Texture2D" uid="uid://bd1udyhend01m" path="res://assets/Tiny Swords/Tiny Swords (Update 010)/Terrain/Ground/Tilemap_Elevation.png" id="2_qv3in"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://lava_2.gd" id="10_nnf4b"]
 [ext_resource type="PackedScene" uid="uid://dx1hvwli7k3ni" path="res://ator/character_body_2d.tscn" id="11_g03ld"]
 [ext_resource type="PackedScene" uid="uid://guqf1wl32uep" path="res://portal.tscn" id="12_8blnl"]
+[ext_resource type="PackedScene" uid="uid://d363vpefi1abh" path="res://ator/inimigo.tscn" id="12_23t1j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6mn35"]
 texture = ExtResource("1_vh3oc")
@@ -1087,10 +1088,10 @@ shader_parameter/move_speed = 0.05
 
 [node name="Cena2" type="Node2D"]
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("11_g03ld")]
+[node name="jogador" parent="." groups=["jogador"] instance=ExtResource("11_g03ld")]
 position = Vector2(137, 141)
 
-[node name="Camera2D2" type="Camera2D" parent="CharacterBody2D"]
+[node name="Camera2D2" type="Camera2D" parent="jogador"]
 offset = Vector2(100, 0)
 zoom = Vector2(0.8, 0.8)
 limit_left = 0
@@ -1204,6 +1205,15 @@ centered = false
 
 [node name="portal" parent="." instance=ExtResource("12_8blnl")]
 position = Vector2(2661, 210)
+
+[node name="inimigo" parent="." instance=ExtResource("12_23t1j")]
+position = Vector2(1621, 482)
+
+[node name="inimigo3" parent="." instance=ExtResource("12_23t1j")]
+position = Vector2(2546, 485)
+
+[node name="inimigo2" parent="." instance=ExtResource("12_23t1j")]
+position = Vector2(2037, 483)
 
 [connection signal="body_entered" from="lava2" to="lava2" method="_on_body_entered"]
 [connection signal="pressed" from="CanvasLayer/Control/Button" to="lava3" method="_on_button_pressed"]

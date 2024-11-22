@@ -1,11 +1,35 @@
-[gd_scene load_steps=18 format=3 uid="uid://dx1hvwli7k3ni"]
+[gd_scene load_steps=26 format=3 uid="uid://dx1hvwli7k3ni"]
 
 [ext_resource type="Script" path="res://character_body_2d.gd" id="1_haprs"]
 [ext_resource type="Texture2D" uid="uid://bkkwhm6246vsj" path="res://assets/Tiny Swords/Tiny Swords (Update 010)/Factions/Knights/Troops/Warrior/Blue/Warrior_Blue.png" id="2_2xxl2"]
+[ext_resource type="PackedScene" uid="uid://bnx1bldekf1da" path="res://ator/hurt_box.tscn" id="3_qp7v1"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6jmsj"]
-radius = 18.0
-height = 50.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7dy0i"]
+size = Vector2(67.5, 74)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pkvw2"]
+atlas = ExtResource("2_2xxl2")
+region = Rect2(960, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3dh0"]
+atlas = ExtResource("2_2xxl2")
+region = Rect2(0, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76yj0"]
+atlas = ExtResource("2_2xxl2")
+region = Rect2(192, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yx2ka"]
+atlas = ExtResource("2_2xxl2")
+region = Rect2(576, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2g8ix"]
+atlas = ExtResource("2_2xxl2")
+region = Rect2(768, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jn2ut"]
+atlas = ExtResource("2_2xxl2")
+region = Rect2(960, 384, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oayaw"]
 atlas = ExtResource("2_2xxl2")
@@ -63,6 +87,29 @@ region = Rect2(576, 192, 192, 192)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_pkvw2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3dh0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_76yj0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yx2ka")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2g8ix")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jn2ut")
+}],
+"loop": false,
+"name": &"ataque",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_oayaw")
 }, {
 "duration": 1.0,
@@ -80,7 +127,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ljrs1")
 }],
-"loop": true,
+"loop": false,
 "name": &"correr",
 "speed": 8.0
 }, {
@@ -103,7 +150,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_go03b")
 }],
-"loop": true,
+"loop": false,
 "name": &"parado",
 "speed": 10.0
 }, {
@@ -111,25 +158,43 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ql7mp")
 }],
-"loop": true,
+"loop": false,
 "name": &"pular",
 "speed": 5.0
 }]
 
-[node name="CharacterBody2D" type="CharacterBody2D" groups=["jogador"]]
-collision_mask = 2
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u1hv3"]
+size = Vector2(85, 55)
+
+[node name="character_body_2d" type="CharacterBody2D" node_paths=PackedStringArray("_timer")]
+collision_mask = 6
 script = ExtResource("1_haprs")
+_timer = NodePath("ataqueTempo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -1)
-shape = SubResource("CapsuleShape2D_6jmsj")
+visible = false
+position = Vector2(2.75, -39)
+shape = SubResource("RectangleShape2D_7dy0i")
 
 [node name="animPlayer" type="AnimatedSprite2D" parent="."]
-position = Vector2(-3.05176e-05, -1.00001)
-scale = Vector2(1.00521, 1.00521)
+position = Vector2(1.5, -28.5)
+scale = Vector2(0.994792, 1.00521)
 sprite_frames = SubResource("SpriteFrames_rm65a")
-animation = &"parado"
-autoplay = "pular"
-frame_progress = 0.689372
+animation = &"ataque"
+frame = 5
+frame_progress = 1.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="HurtBox" parent="." instance=ExtResource("3_qp7v1")]
+position = Vector2(4.5, -29.5)
+collision_mask = 32
+
+[node name="DanoRecebido" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("RectangleShape2D_u1hv3")
+
+[node name="ataqueTempo" type="Timer" parent="."]
+wait_time = 0.55
+one_shot = true
+
+[connection signal="timeout" from="ataqueTempo" to="." method="_on_ataque_tempo_timeout"]

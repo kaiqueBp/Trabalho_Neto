@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c8jbglhjjtmpu"]
+[gd_scene load_steps=19 format=3 uid="uid://c8jbglhjjtmpu"]
 
 [ext_resource type="Texture2D" uid="uid://bva2spjqwspdj" path="res://assets/Tiny Swords/Tiny Swords (Update 010)/Terrain/Ground/Tilemap_Flat.png" id="1_h0yhp"]
 [ext_resource type="Texture2D" uid="uid://bd1udyhend01m" path="res://assets/Tiny Swords/Tiny Swords (Update 010)/Terrain/Ground/Tilemap_Elevation.png" id="2_tmmjg"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://yboesj2l7kna" path="res://assets/Seasonal Tilesets/1 - Grassland/Background parts/3 - Cloud_cover_1.png" id="7_x3ha8"]
 [ext_resource type="Texture2D" uid="uid://r7nc0cb10b22" path="res://assets/Seasonal Tilesets/1 - Grassland/Background parts/4 - Cloud_cover_2.png" id="8_p80iv"]
 [ext_resource type="PackedScene" uid="uid://dx1hvwli7k3ni" path="res://ator/character_body_2d.tscn" id="9_dwasl"]
+[ext_resource type="PackedScene" uid="uid://d363vpefi1abh" path="res://ator/inimigo.tscn" id="9_lae6f"]
 [ext_resource type="PackedScene" uid="uid://guqf1wl32uep" path="res://portal.tscn" id="10_ll58w"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jc5gm"]
@@ -1249,10 +1250,16 @@ scale = Vector2(3.09375, 1.19711)
 texture = ExtResource("8_p80iv")
 centered = false
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("9_dwasl")]
+[node name="inimigo2" parent="." instance=ExtResource("9_lae6f")]
+position = Vector2(1286, 484)
+
+[node name="inimigo" parent="." instance=ExtResource("9_lae6f")]
+position = Vector2(540, 483)
+
+[node name="jogador" parent="." groups=["jogador"] instance=ExtResource("9_dwasl")]
 position = Vector2(297, 46)
 
-[node name="Camera2D2" type="Camera2D" parent="CharacterBody2D"]
+[node name="Camera2D2" type="Camera2D" parent="jogador"]
 offset = Vector2(100, -130)
 zoom = Vector2(0.9, 0.9)
 limit_left = 30
@@ -1263,5 +1270,11 @@ limit_smoothed = true
 
 [node name="portal" parent="." instance=ExtResource("10_ll58w")]
 position = Vector2(96, 202)
+
+[node name="inimigo3" parent="." instance=ExtResource("9_lae6f")]
+position = Vector2(683, 199)
+
+[node name="inimigo4" parent="." instance=ExtResource("9_lae6f")]
+position = Vector2(706, 476)
 
 [connection signal="pressed" from="CanvasLayer/Control/Button" to="portal" method="_on_button_pressed"]
