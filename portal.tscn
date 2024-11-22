@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://guqf1wl32uep"]
+
+[ext_resource type="Script" path="res://portal.gd" id="1_ii2lg"]
+[ext_resource type="Texture2D" uid="uid://bhh7r716dsmna" path="res://assets/Seasonal Tilesets/pixelflag-removebg-preview.png" id="2_6pi24"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iwk82"]
+size = Vector2(69.5, 184)
+
+[node name="bandeira" type="Area2D" groups=["jogador"]]
+position = Vector2(20, 29)
+script = ExtResource("1_ii2lg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(147.75, 189)
+shape = SubResource("RectangleShape2D_iwk82")
+
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["jogador"]]
+position = Vector2(136, 248)
+scale = Vector2(0.477284, 0.585491)
+texture = ExtResource("2_6pi24")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
